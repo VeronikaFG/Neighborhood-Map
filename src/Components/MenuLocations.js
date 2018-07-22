@@ -73,7 +73,7 @@ class MenuLocations extends Component {
                     className="visual-input"
                     type="text"
                     placeholder="Search 🔎"
-                    value={this.state.query}
+                    value={this.state.inputText}
                     onChange={this.findLocations}
                   />
             </div>

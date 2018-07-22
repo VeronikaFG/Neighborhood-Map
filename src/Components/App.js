@@ -24,14 +24,13 @@ class App extends Component {
        window.initMap = this.initMap;
     }
 
-  // Initial Google Map
+  // Initial Map
     initMap() {
         let elem = this;
 
-        var centralizedmap = document.getElementById('map');
-        // styling map full screen
+        let centralizedmap = document.getElementById('map');
         centralizedmap.style.height = "100vh";
-        const map = new window.google.maps.Map(centralizedmap, {
+        let map = new window.google.maps.Map(centralizedmap, {
             center: {lat: 40.9957141, lng: 17.2190192},
             zoom: 18,
             styles: colorMap,
@@ -46,41 +45,40 @@ class App extends Component {
 
         let InfoWindow = new window.google.maps.InfoWindow({});
 
+        this.setState({
+            "map": map,
+            "infowindow": InfoWindow
+        });
+
         window.google.maps.event.addListener(InfoWindow, 'closeclick', function () {
             elem.closeInfoWindow();
         });
 
-        window.google.maps.event.addListener(map, 'click', function () {
+        window.google.maps.event.addListener(map, "click", function () {
             elem.closeInfoWindow();
         });
 
-        this.setState({
-            'map': map,
-            'infowindow': InfoWindow
-        });
-        // Initialize localizations
         let localizations = [];
         this.state.localizations.forEach(function (viewpoint) {
-            let titleplace = viewpoint.name
+            let titleplace = viewpoint.name;
             let marker = new window.google.maps.Marker({
-                position: new window.google.maps.LatLng
-                (viewpoint.latitude, viewpoint.longitude),
+                position: new window.google.maps.LatLng(viewpoint.latitude, viewpoint.longitude),
                 animation: window.google.maps.Animation.DROP,
                 map: map
+
             });
 
-            // if the user click on the marker, a info window will open
-            marker.addListener('click', function () {
+            marker.addListener("click", function () {
                 elem.showInfoWindow(marker);
             });
-            
-            viewpoint.display = true;
+
             viewpoint.titleplace = titleplace;
             viewpoint.marker = marker;
+            viewpoint.display = true;
             localizations.push(viewpoint);
         });
         this.setState({
-            'localizations': Places,
+            "localizations": Places,
         });
     }
 
@@ -89,13 +87,42 @@ class App extends Component {
         this.state.infowindow.open(this.state.map, marker);
         marker.setAnimation(window.google.maps.Animation.BOUNCE);
         this.setState({
-            "usermarker": marker
+            'usermarker': marker
         });
         this.state.infowindow.setContent('Load info.........');
-        // Centralize the selected marker in the map
         this.state.map.setCenter(marker.getPosition());
 
         this.retrieveInfo(marker);
+    }
+
+
+    retrieveInfo(marker) {
+        let elem = this;
+        let clientSecret = "KH2KCPBLSM4PUWRU1GWJ1YUTQD4YJUZ1ZU2UWNNZGMHSVCAQ";
+        let clientId = "KSQRXHPVGEMSIGMQVW0AM3S0Z34BNQB1SKUHKZXDJ5KTN4LV";
+        let request = "https://api.foursquare.com/v2/venues/search?client_id=" + clientId + "&client_secret=" + clientSecret + "&v=20180715&ll=" + marker.getPosition().lat() + "," + marker.getPosition().lng() + "&limit=1";
+        fetch(request)
+            .then(
+                function (response) {
+                  // failed response:(
+                    if (response.status !== 200) {
+                      let Handlingerror = "Error Foursquare data loading";
+                      elem.state.infowindow.setContent(Handlingerror);
+                      return;
+                    }
+                   //successful response :)
+                    response.json().then(function (data) {
+                        var location_data = data.response.venues[0];
+
+                        var retrieveData = '<a href="https://foursquare.com/v/'+ location_data.id +'" target="_blank">See the location on Foursquare</a>'
+                        elem.state.infowindow.setContent(retrieveData);
+                    });
+                }
+            )
+            .catch(function (err) {
+              let Handlingerror = "Error Foursquare data loading";
+              elem.state.infowindow.setContent(Handlingerror);
+            });
     }
 
     closeInfoWindow() {
@@ -108,33 +135,7 @@ class App extends Component {
         this.state.infowindow.close();
     }
 
-    retrieveInfo(marker) {
-        let elem = this;
-        let clientSecret = "KH2KCPBLSM4PUWRU1GWJ1YUTQD4YJUZ1ZU2UWNNZGMHSVCAQ";
-        let clientId = "KSQRXHPVGEMSIGMQVW0AM3S0Z34BNQB1SKUHKZXDJ5KTN4LV";
-        let request = "https://api.foursquare.com/v2/venues/search?client_id=" + clientId + "&client_secret=" + clientSecret + "&v=20180718&ll=" + marker.getPosition().lat() + "," + marker.getPosition().lng() + "&limit=1";
-        fetch(request)
-            .then(
-                function (response) {
-                  // failed error response :(
-                    if (response.status !== 200) {
-                        elem.state.infowindow.setContent("Info error loading");
-                        return;
-                    }
-                    response.json().then(function (data) {
-                      // successful response
-                        let location_data = data.response.venues[0];
-                        let retrieveData = '<a href="https://foursquare.com/v2/venues/search?'+ location_data.id +'" target="_blank">See the location on Foursquare</a>'
-                        elem.state.infowindow.setContent(retrieveData);
-                    });
-                }
-            )
-            .catch(function (err) {
-                elem.state.infowindow.setContent("Info error loading");
-            });
-    }
 
-    //render the map in the app
     render() {
         return (
             <div role="main">
