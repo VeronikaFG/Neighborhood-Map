@@ -67,7 +67,7 @@ class MenuLocations extends Component {
                <ul>
                  {this.state.menuplaces && identifiedplace}
                </ul>
-               // Definition semantic ARIA attributes
+               {/* Definition semantic ARIA attributes*/}
                   <input role="search"
                     aria-labelledby="filter"
                     id="search-field"
