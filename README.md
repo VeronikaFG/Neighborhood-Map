@@ -1,3 +1,31 @@
+## Neighborhood Map project
+This app is a react-map that displays a colourful map with react-logo markers identifying five wonderful italian locations.
+The app displays these locations by default when the page is loaded. The app's interface is very easy and intuitive to use. To start the user can click on button "Start Research" at top right of the page. Select a location from the venues list or by clicking on the map's markers. Clicking on the name of location open a infowindow with more information about the place. The user can also filter the locations with a text input field: filtering the list venues also filters the markers on the map. The App include Foursquare's API as third-party APIs to provide additional information about the venue.
+
+Instructions to launch and run the app:
+Get started:
+-to install this project, you need to clone or download the repository
+-install all project dependencies with npm install
+-start the development server with npm start
+-the app will run in localhost:3000
+
+How to use the app in production way:
+
+# Production build
+npm run build
+serve run deploy
+
+# Development build
+start the hosting server with npm start
+Note that the service worker is only implemented during production build.
+
+Resources used to create the map:
+- https://www.npmjs.com/package/react-async-script-loader
+- https://developers.google.com/maps/documentation/javascript/tutorial
+- https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/
+- https://it.foursquare.com/developers/apps
+- https://snazzymaps.com/
+-
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -300,7 +328,7 @@ In the WebStorm menu `Run` select `Edit Configurations...`. Then click `+` and s
 
 Start your app by running `npm start`, then press `^D` on macOS or `F9` on Windows and Linux or click the green debug icon to start debugging in WebStorm.
 
-The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine. 
+The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine.
 
 ## Formatting Code Automatically
 
@@ -1989,7 +2017,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     RewriteRule ^ index.html [QSA,L]
 ```
 
-It will get copied to the `build` folder when you run `npm run build`. 
+It will get copied to the `build` folder when you run `npm run build`.
 
 If you’re using [Apache Tomcat](http://tomcat.apache.org/), you need to follow [this Stack Overflow answer](https://stackoverflow.com/a/41249464/4878474).
 
@@ -2429,7 +2457,7 @@ To resolve this:
 1. Open an issue on the dependency's issue tracker and ask that the package be published pre-compiled.
   * Note: Create React App can consume both CommonJS and ES modules. For Node.js compatibility, it is recommended that the main entry point is CommonJS. However, they can optionally provide an ES module entry point with the `module` field in `package.json`. Note that **even if a library provides an ES Modules version, it should still precompile other ES6 features to ES5 if it intends to support older browsers**.
 
-2. Fork the package and publish a corrected version yourself. 
+2. Fork the package and publish a corrected version yourself.
 
 3. If the dependency is small enough, copy it to your `src/` folder and treat it as application code.
 
