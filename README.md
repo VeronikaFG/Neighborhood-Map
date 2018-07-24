@@ -14,8 +14,8 @@ Get started:
 How to use the app in production way:
 
 # Production build
-npm run build
-serve run deploy
+npm run build-
+serve npm run deploy
 
 # Development build
 Start the hosting server with npm start-
@@ -33,6 +33,7 @@ Resources used to create the map:
 - https://stackoverflow.com/questions/10376617/how-do-you-create-a-marker-with-a-custom-icon-for-google-maps-api-v3
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+A special thanks to Udacity and all Udacity reviewers for this awesome learning experience.
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
