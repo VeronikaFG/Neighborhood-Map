@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ViewPlace from './ViewPlace';
 
 class MenuLocations extends Component {
-
+// Initialize Constructor
     constructor(props) {
         super(props);
         this.state = {
@@ -67,12 +67,13 @@ class MenuLocations extends Component {
                <ul>
                  {this.state.menuplaces && identifiedplace}
                </ul>
+               // Definition semantic ARIA attributes
                   <input role="search"
                     aria-labelledby="filter"
                     id="search-field"
                     className="visual-input"
                     type="text"
-                    placeholder="Search 🔎"
+                    placeholder="🔎 Powered by Foursquare"
                     value={this.state.inputText}
                     onChange={this.findLocations}
                   />
