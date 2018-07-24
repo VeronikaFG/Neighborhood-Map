@@ -5,6 +5,7 @@ import {colorMap} from "./colorMap.js";
 import scriptLoader from "react-async-script-loader";
 import * as logo from '../logo.svg'
 
+//Initialize constructor
 class App extends Component {
 
     constructor(props) {
@@ -73,7 +74,6 @@ class App extends Component {
                 animation: window.google.maps.Animation.DROP,
                 map: map,
                 icon: logo
-
             });
 
             marker.addListener("click", function () {
