@@ -25,7 +25,10 @@ Resources used to create the map:
 - https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/
 - https://it.foursquare.com/developers/apps
 - https://snazzymaps.com/
--
+- https://developer.foursquare.com/
+- https://developers.google.com/maps/documentation/
+- https://www.designrush.com/resources/css3buttongenerator
+- https://stackoverflow.com/questions/10376617/how-do-you-create-a-marker-with-a-custom-icon-for-google-maps-api-v3
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
