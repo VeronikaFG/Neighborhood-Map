@@ -1,8 +1,8 @@
 ## Neighborhood Map project
-This app is a react-map that displays a colourful map with react-logo markers identifying five wonderful italian locations.
+This app is a react-map that displays a colourful map with circle green logo markers identifying five wonderful italian locations.
 The app displays these locations by default when the page is loaded. The app's interface is very easy and intuitive to use. To start the user can click on button "Start Research" at top right of the page. Select a location from the venues list or by clicking on the map's markers. Clicking on the name of location open a infowindow with more information about the place. The user can also filter the locations with a text input field: filtering the list venues also filters the markers on the map. The App include Foursquare's API as third-party APIs to provide additional information about the venue.
 
-Instructions to launch and run the app:
+# Instructions to launch and run the app:
 Get started:
 -to install this project, you need to clone or download the repository
 -install all project dependencies with npm install
