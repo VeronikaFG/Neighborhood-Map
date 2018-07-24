@@ -5,7 +5,6 @@ export const Places = [
     'identify': "restaurant",
     'latitude': 40.9958593563416,
     'longitude': 17.22129846570724,
-    'streetAddress': "Via Narciso, 59"
 },
 
 {
@@ -13,7 +12,6 @@ export const Places = [
     'identify': "restaurant",
     'latitude': 40.99476726460758,
     'longitude': 17.219515835647815,
-    'streetAddress': "Piazza Aldo moro"
 },
 
 {   'name': "Lungo Mare Grottone ",
