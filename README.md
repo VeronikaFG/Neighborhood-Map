@@ -6,10 +6,10 @@ The app displays these locations by default when the page is loaded. The app's i
 # Instructions to launch and run the app:
 Get started:
 
--to install this project, you need to clone or download the repository
--install all project dependencies with npm install
--start the development server with npm start
--the app will run in localhost:3000
+- to install this project, you need to clone or download the repository
+- install all project dependencies with npm install
+- start the development server with npm start
+- the app will run in localhost:3000
 
 How to use the app in production way:
 
@@ -18,7 +18,7 @@ npm run build
 serve run deploy
 
 # Development build
-start the hosting server with npm start
+Start the hosting server with npm start-
 Note that the service worker is only implemented during production build.
 
 Resources used to create the map:
