@@ -3,6 +3,7 @@ import MenuLocations from "./MenuLocations";
 import {Places} from "./Places.js";
 import {colorMap} from "./colorMap.js";
 import scriptLoader from "react-async-script-loader";
+import * as logo from '../logo.svg'
 
 class App extends Component {
 
@@ -42,6 +43,11 @@ class App extends Component {
             window.google.maps.event.trigger(map, "resize");
             elem.state.map.setCenter(center);
         });
+        window.gm_authFailure = function() {
+            // remove the map div or maybe call another API to load map
+           // maybe display a useful message to the user
+           alert('Google maps failed to load!');
+        }
 
         let InfoWindow = new window.google.maps.InfoWindow({});
 
@@ -64,7 +70,8 @@ class App extends Component {
             let marker = new window.google.maps.Marker({
                 position: new window.google.maps.LatLng(viewpoint.latitude, viewpoint.longitude),
                 animation: window.google.maps.Animation.DROP,
-                map: map
+                map: map,
+                icon: logo
 
             });
 
@@ -108,13 +115,12 @@ class App extends Component {
                     if (response.status !== 200) {
                       let Handlingerror = "Error Foursquare data loading";
                       elem.state.infowindow.setContent(Handlingerror);
-                      return;
+                      return alert(Handlingerror);
                     }
                    //successful response :)
                     response.json().then(function (data) {
-                        var location_data = data.response.venues[0];
-
-                        var retrieveData = '<a href="https://foursquare.com/v/'+ location_data.id +'" target="_blank">See the location on Foursquare</a>'
+                        let location_data = data.response.venues[0];
+                        let retrieveData = '<div><h2>'+location_data.name+'</h2></br><a href="https://foursquare.com/v/'+ location_data.id +'" target="_blank">See all the details location on Foursquare</a></div>'
                         elem.state.infowindow.setContent(retrieveData);
                     });
                 }
