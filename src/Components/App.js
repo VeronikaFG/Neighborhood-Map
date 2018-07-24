@@ -43,9 +43,10 @@ class App extends Component {
             window.google.maps.event.trigger(map, "resize");
             elem.state.map.setCenter(center);
         });
+
         window.gm_authFailure = function() {
-            // remove the map div or maybe call another API to load map
-           // maybe display a useful message to the user
+            // remove the map div or call another API to load map
+           //  show a message to the user
            alert('Google maps failed to load!');
         }
 
@@ -144,6 +145,7 @@ class App extends Component {
 
     render() {
         return (
+          // definition semantic ARIA roles elements
             <div role="main">
                 <MenuLocations
                   localizations={this.state.localizations}
@@ -155,7 +157,7 @@ class App extends Component {
         );
     }
 }
-
+// Asynchronously loading map with package react-async-script-loader
  export default scriptLoader(
      ['https://maps.googleapis.com/maps/api/js?key=AIzaSyDKmgEgVbvwtPnS67YoroVxddk2rS9lMgg&v=3&callback=initMap']
  )(App);
