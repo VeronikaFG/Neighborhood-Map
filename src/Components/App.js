@@ -20,6 +20,7 @@ class App extends Component {
         this.initMap = this.initMap.bind(this);
         this.showInfoWindow = this.showInfoWindow.bind(this);
         this.closeInfoWindow = this.closeInfoWindow.bind(this);
+        this.makeMarkerIcon = this.makeMarkerIcon.bind(this);
     }
 
     componentDidMount(){
@@ -67,13 +68,23 @@ class App extends Component {
         });
 
         let localizations = [];
+        const defaultIcon = this.makeMarkerIcon('0dec8e');
+        const highlightedIcon = this.makeMarkerIcon('e80ce8');
+
         this.state.localizations.forEach(function (viewpoint) {
             let titleplace = viewpoint.name;
             let marker = new window.google.maps.Marker({
                 position: new window.google.maps.LatLng(viewpoint.latitude, viewpoint.longitude),
                 animation: window.google.maps.Animation.DROP,
                 map: map,
-                icon: logo
+                icon: defaultIcon
+            });
+
+            marker.addListener('mouseover', function () {
+                this.setIcon(highlightedIcon);
+            });
+            marker.addListener('mouseout', function () {
+                this.setIcon(defaultIcon);
             });
 
             marker.addListener("click", function () {
@@ -88,6 +99,17 @@ class App extends Component {
         this.setState({
             "localizations": Places,
         });
+    }
+
+    makeMarkerIcon(markerColor) {
+        const markerImage = new window.google.maps.MarkerImage(
+            'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + markerColor +
+            '|40|_|%E2%80%A2',
+            new window.google.maps.Size(41, 59),
+            new window.google.maps.Point(0, 0),
+            new window.google.maps.Point(10, 34),
+            new window.google.maps.Size(41, 59));
+        return markerImage;
     }
 
     showInfoWindow(marker) {
